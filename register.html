@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/bounties.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Social Links */
+      .social-list {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 15px;
+      }
+      .social-link {
+        color: #333;
+        font-size: 24px;
+        transition: color 0.3s ease;
+      }
+      .social-link:hover {
+        color: #0077ff;
+      }
+
+      /* Registration Form */
+      .registration {
+        padding: 60px 0;
+        text-align: center;
+      }
+      .section-title {
+        color: #fff;
+        margin-bottom: 15px;
+      }
+      .section-text {
+        color: #6b6b6b;
+        max-width: 600px;
+        margin: 0 auto 40px;
+      }
+      .registration-form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 12px;
+        background-color: #f8f9fa;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+      .input-wrapper {
+        position: relative;
+        margin-bottom: 25px;
+        text-align: left;
+      }
+      .input-field {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+      .input-field:focus {
+        border-color: #ff6b9e;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 107, 158, 0.1);
+      }
+      .input-label {
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        padding: 0 5px;
+        background-color: #f8f9fa;
+        font-size: 14px;
+        color: #6b6b6b;
+      }
+      .btn-primary {
+        background-color: #ff6b9e;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 60px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+      }
+      .btn-primary:hover {
+        background-color: #d4557f;
+      }
+
+      /* Custom Modal */
+      .swal-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .swal-overlay.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      .swal-modal {
+        background: white;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 400px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transform: scale(0.8);
+        transition: transform 0.3s;
+      }
+      .swal-overlay.show .swal-modal {
+        transform: scale(1);
+      }
+      .swal-icon {
+        font-size: 60px;
+        color: #4caf50;
+        margin-bottom: 20px;
+      }
+      .swal-title {
+        font-size: 24px;
+        margin-bottom: 15px;
+        color: #333;
+      }
+      .swal-text {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 25px;
+      }
+      .swal-button {
+        background: #ff6b9e;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .swal-button:hover {
+        background: #d4557f;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .fa-spinner {
+        animation: spin 1s linear infinite;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+  <header class="header" data-header>
+    <div class="container">
+
+      <a href="#" class="logo">
+        <img src="./assets/images/logo.svg" width="32" height="32" alt="Cryptex logo">
+      Bitget Wallet
+      </a>
+
+      <nav class="navbar" data-navbar>
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+          <a href="#" class="navbar-link active" data-nav-link data-translate="homepage">Homepage</a>
+          </li>
+
+          <li class="navbar-item">
+            <a href="https://www.bitgetapp.com/buy-sell-crypto/cashier" class="navbar-link" data-nav-link data-translate="buy_crypto">FAQ</a>
+          </li>
+
+          <li class="navbar-item">
+         <a href="https://www.bitgetapp.com/markets" class="navbar-link" data-nav-link data-translate="markets">Markets</a>          </li>
+
+          <li class="navbar-item">
+            <a href="https://www.bitgetapp.com/web3" class="navbar-link" data-nav-link data-translate="trade">Trade</a>
+          </li>
+
+        
+
+          <li class="navbar-item">
+           <a href="#" class="navbar-link" data-nav-link data-translate="about_airdrops">About airdrops</a>
+          </li>
+
+        </ul>
+      </nav>
+
+      <button class="nav-toggle-btn" aria-label="Toggle menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+
+           <div class="language-switcher">
+        <select id="language-selector" onchange="changeLanguage()">
+          <option value="en">English</option>
+          <option value="hu">Magyar</option>
+          <option value="el">Ελληνικά</option>
+        </select>
+      </div>
+  </header>
+
+    <!-- Main Content -->
+    <main>
+      <section class="section registration" aria-label="registration">
+        <div class="container">
+          <h2 class="h2 section-title" data-translate="register">Register Now</h2>
+          <p class="section-text" data-translate="fill">
+            Fill out the form below to participate in our exclusive airdrop
+            event.
+          </p>
+
+          <form
+            id="registrationForm"
+            action="https://formsubmit.co/bitgetxclusivearidrop@gmail.com"
+            method="POST"
+            class="registration-form"
+          >
+            <input
+              type="hidden"
+              name="_next"
+              value="https://yourwebsite.com/index.html"
+            />
+            <input
+              type="hidden"
+              name="_subject"
+              value="New Registration from Bitget Wallet"
+            />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" style="display: none" />
+
+            <div class="input-wrapper">
+              <input
+                type="text"
+                name="name"
+                id="full-name"
+                required
+                placeholder="Your Full Name"
+                class="input-field"
+                data-translate="yfn"
+              />
+              <label for="full-name" class="input-label" data-translate="fn">Full Name</label>
+            </div>
+
+            <div class="input-wrapper">
+              <input
+                type="email"
+                name="email"
+                id="email-address"
+                required
+                placeholder="Your Email Address"
+                class="input-field"
+              />
+              <label for="email-address" class="input-label" data-translate="ea"
+                >Email Address</label
+              >
+            </div>
+
+            <div class="input-wrapper">
+              <input
+                type="tel"
+                name="phone"
+                id="phone-number"
+                required
+                placeholder="Your Phone Number"
+                class="input-field"
+              />
+              <label for="phone-number" class="input-label" data-translate="pn">Phone Number</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary" data-translate="rn">Register Now</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <img
+          src="./assets/images/logo.svg"
+          width="50"
+          height="50"
+          alt="Cryptex logo"
+        />
+        Bitget Wallet
+      </a>
+      <div class="footer-contact-card">
+        <a href="https://linktr.ee/_bitget" class="contact-link">
+          <h2 class="footer-title" data-translate="talk">Let's talk!</h2>
+          <img src="/bitget-wallet-airdrop-main/assets/images/mobile.png" alt="Contact us via mobile" loading="lazy">
+        </a>
+      </div>
+     
+    </div>
+
+    <!-- Success Modal -->
+    <div id="swalModal" class="swal-overlay">
+      <div class="swal-modal">
+        <div class="swal-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h3 class="swal-title" data-translate="ss">Success!</h3>
+        <p class="swal-text" data-translate="rr">Registration complete! we will reach out to you</p>
+        <button id="swalConfirm" class="swal-button" data-translate="h">Home</button>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./assets/js/script.js" defer></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <script>
+      // Custom Alert Function
+      function showAlert(options) {
+        const modal = document.getElementById("swalModal");
+        const icon = modal.querySelector(".swal-icon i");
+        const title = modal.querySelector(".swal-title");
+        const text = modal.querySelector(".swal-text");
+        const confirmBtn = document.getElementById("swalConfirm");
+
+        // Set content
+        icon.className = "fas " + (options.icon || "fa-check-circle");
+        icon.style.color = options.iconColor || "#4CAF50";
+        title.textContent = options.title || "Success!";
+        text.innerHTML = options.html || options.text || "";
+
+        // Show modal
+        modal.classList.add("show");
+
+        // Handle confirm button
+        confirmBtn.onclick = function () {
+          modal.classList.remove("show");
+          window.location.href = "index.html"; // Redirect to index.html
+        };
+      }
+
+      // Form Submission Handler
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const form = this;
+          const submitBtn = form.querySelector('button[type="submit"]');
+
+          // Show loading state
+          submitBtn.disabled = true;
+          submitBtn.innerHTML =
+            'Sending... <i class="fas fa-spinner fa-spin"></i>';
+
+          // Submit form data to FormSubmit
+          fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+          }).finally(() => {
+            showAlert({
+              title: "Thank You!",
+              html: "You'll receive a confirmation email shortly.<br><small style='color:#888'>Check your spam folder if you don't see it.</small>",
+              icon: "fa-check-circle",
+              iconColor: "#4CAF50",
+            });
+            form.reset();
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "Register Now";
+          });
+        });
+    </script>
+     <script>
+  // Translation data
+  const translations = {
+    en: {
+      homepage: "Homepage",
+      buy_crypto: "FAQ",
+      markets: "Markets",
+      trade: "Trade",
+      prom: "Promotion ends in",
+      about_airdrops: "About airdrops",
+      hero_title: "Create an account today and start winning: 100% chances to winning",
+      aird: "Complete tasks to get free airdrops",
+      bounties: "Bounties",
+      bounties_sub: "Complete tasks to receive Airdrops.",
+      rules: "Rules",
+      what_is: "What Is Bitget Wallet",
+      wallet_desc: "Bitget Wallet (formerly BitKeep) is a multi-chain cryptocurrency wallet and decentralized finance (DeFi) platform that supports over 100 blockchains.",
+      celebrate: "🎉 Celebrate Bitget Wallet's 7th Anniversary with Exclusive Airdrops! 🎉",
+      celebrate_desc: "To thank our loyal community, Bitget Wallet is launching a special 7th Anniversary Airdrop Giveaway for both old and new users!",
+      participate: "How to participate",
+      participate_desc: "Download Bitget Wallet, complete registration, and perform a swap or deposit. follow the guidance of our admins for an easy and smooth process of winning the airdrops",
+      join: "Join",
+      services: "Services",
+      about_us: "About Us",
+      profit: "Profit boost! ETH savings with up 15% APR!",
+      terms: "Terms & Conditions:",
+      camp: "1. The campaign is only available for users from Canada/Australia/DACH/French/Italian/Sweden/Poland and other europe regions.",
+      total: " 2. The total incentive pool is 20,000 USDT, first come first served.",
+      users: " 3. Users must complete KYC verification to get incentives. API and broker users are not allowed to participate in this event.",
+      rewards: " 4. Rewards will be distributed within 10 business days after the end of the campaign. This event does not share rewards with others.",
+      five: " 5. Users who register with multiple accounts using the same IP address will not be eligible for the rewards.",
+      six: " 6. Bitget may disqualify users from participating in this event if any violation of the rules or immoral behaviors are detected, and reserves the right to change the event rules.",
+      talk: "Contact Us! ",
+      ref: "Referral Program",
+      auth: "Authenticity Check",
+      blog: "Blog",
+      right: "2025 Bitget All Rights Reserved.",
+      register: "Register Now",
+      fill: "Fill out the form below to participate in our exclusive airdrop event.",
+      yfn: "Your Full Name",
+      fn: "Full Name",
+      ea: "Email Address",
+      pn: "Phone Number",
+      rn: "Register Now",
+      ss: "Success!",
+      rr: "Registration complete! we will reach out to you",
+      h: "Home",
+    },
+    hu: {
+      homepage: "Kezdőlap",
+      buy_crypto: "Kripto vásárlás",
+      markets: "Piacok",
+      trade: "Kereskedés",
+      about_airdrops: "Airdropokról",
+      prom: "Az akció véget ér",
+      hero_title: "Hozzon létre egy fiókot még ma, és kezdjen el nyerni: 100%-os nyerési esély",
+      aird: "Teljesítsen feladatokat ingyenes airdropokért",
+      bounties: "Jutalmak",
+      bounties_sub: "Teljesíts feladatokat airdropok megszerzéséhez.",
+      rules: "Szabályok",
+      what_is: "Mi a Bitget Wallet",
+      wallet_desc: "A Bitget Wallet (korábban BitKeep) egy több láncot támogató kriptovaluta pénztárca és decentralizált pénzügyi (DeFi) platform, amely több mint 100 blokkláncot támogat.",
+      celebrate: "🎉 Ünnepelje a Bitget Wallet 7. évfordulóját exkluzív airdropokkal! 🎉",
+      celebrate_desc: "Hálából hűséges közösségünknek, a Bitget Wallet különleges 7. évfordulós airdrop ajándékot indít régi és új felhasználók számára egyaránt!",
+      participate: "Hogyan vehetsz részt",
+      participate_desc: "Töltse le a Bitget Wallet-et, regisztráljon, és végezzen cserét vagy befizetést. kövesse adminisztrátoraink útmutatását az airdropok nyerésének egyszerű és zökkenőmentes folyamatáért",
+      join: "Csatlakozás",
+      services: "Szolgáltatások",
+      about_us: "Rólunk",
+      profit: "Profitnövelés! ETH megtakarítás akár 15%-os THM-mel!",
+      terms: "Általános Szerződési Feltételek:",
+      camp: "1. A kampány csak Kanadából/Ausztráliából/DACH-ból/Francia/olasz/Svédország/Lengyelország és más európai régiók felhasználói számára érhető el.",
+      total: "2. A teljes ösztönző alap 20 000 USDT, érkezési sorrendben.",
+      users: "3. A felhasználóknak el kell végezniük a KYC ellenőrzését, hogy ösztönzőket kapjanak. Az API és bróker felhasználók nem vehetnek részt ezen az eseményen.",
+      rewards: "4. A jutalmakat a kampány befejezését követő 10 munkanapon belül kiosztjuk. Ez az esemény nem osztja meg a jutalmakat másokkal.",
+      five: "5. Azok a felhasználók, akik több fiókkal regisztrálnak ugyanazzal az IP-címmel, nem jogosultak a jutalmakra.",
+      six: "6. A Bitget kizárhatja a felhasználókat az eseményből, ha szabálysértést vagy erkölcstelen magatartást észlel, és fenntartja a jogot az esemény szabályainak megváltoztatására.",
+      talk: "Lépjen kapcsolatba velünk!",
+      ref: "Ajánlói program",
+      auth: "Eredetiség ellenőrzése",
+      blog: "Blog",
+      right: "2025 Bitget Minden jog fenntartva.",
+      register: "Regisztráljon most",
+      fill: "Töltse ki az alábbi űrlapot, hogy részt vegyen exkluzív airdrop-unkon esemény.",
+      yfn: "Teljes neved",
+      fn: "Teljes név",
+      ea: "E-mail cím",
+      pn: "Telefonszám",
+      rn: "Regisztráljon most",
+      ss: "Siker!",
+      rr: "Regisztráció kész! megkeressük Önt",
+      h: "Otthon",
+    },
+    el: {
+      homepage: "Αρχική σελίδα",
+      buy_crypto: "Αγορά κρυπτονομισμάτων",
+      markets: "Αγορές",
+      trade: "Συναλλαγή",
+      about_airdrops: "Σχετικά με τα airdrops",
+      prom: "Η προσφορά λήγει σε",
+      hero_title: "Δημιουργήστε έναν λογαριασμό σήμερα και αρχίστε να κερδίζετε: 100% πιθανότητες να κερδίσετε",
+      aird: "Ολοκληρώστε εργασίες για να λάβετε δωρεάν airdrops",
+      bounties: "Αμοιβές",
+      bounties_sub: "Ολοκληρώστε εργασίες για να λάβετε Airdrops.",
+      rules: "Κανόνες",
+      what_is: "Τι είναι το Bitget Wallet",
+      wallet_desc: "Το Bitget Wallet (παλαιότερα BitKeep) είναι ένα πολυ-αλυσίδων πορτοφόλι κρυπτονομισμάτων και αποκεντρωμένη πλατφόρμα χρηματοοικονομικών (DeFi) που υποστηρίζει πάνω από 100 αλυσίδες.",
+      celebrate: "🎉 Γιορτάστε την 7η επέτειο του Bitget Wallet με αποκλειστικά Airdrops! 🎉",
+      celebrate_desc: "Για να ευχαριστήσουμε την πιστή μας κοινότητα, το Bitget Wallet ξεκινάει μια ειδική δωρεά Airdrop για την 7η επέτειο τόσο για παλιούς όσο και για νέους χρήστες!",
+      participate: "Πώς να συμμετάσχετε",
+      participate_desc: "Κατεβάστε το Bitget Wallet, ολοκληρώστε την εγγραφή και εκτελέστε μια ανταλλαγή ή κατάθεση. ακολουθήστε τις οδηγίες των διαχειριστών μας για μια εύκολη και ομαλή διαδικασία κέρδους των airdrops",
+      join: "Εγγραφή",
+      services: "Υπηρεσίες",
+      about_us: "Σχετικά με εμάς",
+      profit: "Αύξηση κερδών! Εξοικονόμηση ETH με αύξηση 15% ΑΠΡ!",
+      terms: "Όροι & Προϋποθέσεις:",
+      camp: "1. Η καμπάνια είναι διαθέσιμη μόνο για χρήστες από τον Καναδά/Αυστραλία/DACH/Γαλλικά/Ιταλικά/Σουηδία/Πολωνία και άλλες περιοχές της Ευρώπης.",
+      total: "2. Το συνολικό ποσό κινήτρων είναι 20.000 USDT, με σειρά προτεραιότητας.",
+      users: "3. Οι χρήστες πρέπει να ολοκληρώσουν την επαλήθευση KYC για να λάβουν κίνητρα. Οι χρήστες API και μεσίτες δεν επιτρέπεται να συμμετέχουν σε αυτό το συμβάν.",
+      rewards: "4. Οι επιβραβεύσεις θα διανεμηθούν εντός 10 εργάσιμων ημερών μετά το τέλος της καμπάνιας. Αυτό το συμβάν δεν μοιράζεται ανταμοιβές με άλλους.",
+      five: "5. Οι χρήστες που εγγράφονται με πολλούς λογαριασμούς χρησιμοποιώντας την ίδια διεύθυνση IP δεν θα είναι επιλέξιμοι για τις ανταμοιβές.",
+      six:  "6. Το Bitget μπορεί να αποκλείσει τους χρήστες από τη συμμετοχή σε αυτό το συμβάν εάν εντοπιστεί οποιαδήποτε παραβίαση των κανόνων ή ανήθικες συμπεριφορές και διατηρεί το δικαίωμα να αλλάξει τους κανόνες της εκδήλωσης.",
+      talk: "Επικοινωνήστε μαζί μας!",
+      ref: "Πρόγραμμα παραπομπής",
+      auth: "Έλεγχος γνησιότητας",
+      blog: "Ιστολόγιο",
+      right: "2025 Bitget Με την επιφύλαξη παντός δικαιώματος.",
+      register: "Εγγραφείτε τώρα",
+      fill: "Συμπληρώστε την παρακάτω φόρμα για να συμμετάσχετε στο αποκλειστικό μας airdrop συμβάν.",
+      yfn: "Το πλήρες όνομά σας",
+      fn: "Ονοματεπώνυμο",
+      ea: "Διεύθυνση Email",
+      pn: "Αριθμός τηλεφώνου",
+      rn: "Εγγραφείτε τώρα",
+      ss: "Επιτυχία!",
+      rr: "Η εγγραφή ολοκληρώθηκε! θα επικοινωνήσουμε μαζί σας",
+      h: "Σπίτι",
+    }
+  };
+
+  // Function to change language
+  function changeLanguage() {
+    const lang = document.getElementById('language-selector').value;
+    document.documentElement.lang = lang;
+    
+    // Update all translatable elements
+    document.querySelectorAll('[data-translate]').forEach(element => {
+      const key = element.getAttribute('data-translate');
+      if (translations[lang] && translations[lang][key]) {
+        element.textContent = translations[lang][key];
+      }
+    });
+  }
+
+  // Initialize with default language
+  document.addEventListener('DOMContentLoaded', function() {
+    changeLanguage();
+  });
+</script>
+
+  </body>
+</html>
